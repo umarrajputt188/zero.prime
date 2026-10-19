@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umar Prime - Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f6f2;
+            color: #171717;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 24px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #8a6b35;
+        }
+
+        .header-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 16px 60px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            padding: 36px 30px;
+            border: 1px solid #e8e5df;
+            border-radius: 14px;
+            box-shadow: 0 8px 35px rgba(0, 0, 0, 0.04);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 29px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            background: #f4f3ef;
+            padding: 5px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 5px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background: #fff;
+            box-shadow: 0 1px 5px #ddd;
+            font-weight: bold;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #dedede;
+            border-radius: 7px;
+            outline: none;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        input:focus {
+            border-color: #8a6b35;
+            box-shadow: 0 0 0 2px rgba(138, 107, 53, 0.1);
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+
+        .password-wrap input {
+            padding-right: 65px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0 22px;
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #555;
+        }
+
+        .forgot {
+            color: #6c542b;
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #171717;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #333;
+        }
+
+        .notice {
+            display: none;
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 7px;
+            background: #f5f1e8;
+            color: #594522;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .demo-note {
+            margin-top: 20px;
+            text-align: center;
+            color: #888;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px;
+            }
+
+            .card {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">UMAR <span>PRIME</span></div>
+        <a class="header-link" href="#login">Welcome</a>
+    </header>
+
+    <main>
+        <section class="card" id="login">
+
+            <h1 id="heading">Welcome back</h1>
+
+            <p class="subtitle" id="subtitle">
+                Sign in to continue to Umar Prime.
+            </p>
+
+            <div class="tabs">
+                <button class="tab active"
+                        id="loginTab"
+                        type="button"
+                        onclick="setMode('login')">
+                    Log in
+                </button>
+
+                <button class="tab"
+                        id="signupTab"
+                        type="button"
+                        onclick="setMode('signup')">
+                    Create account
+                </button>
+            </div>
+
+            <form id="authForm">
+
+                <div class="field" id="nameField" hidden>
+                    <label for="name">Full name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        autocomplete="name">
+                </div>
+
+                <div class="field">
+                    <label for="email">Email address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+
+                    <div class="password-wrap">
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                            minlength="8">
+
+                        <button
+                            class="show-password"
+                            type="button"
+                            onclick="togglePassword()">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field" id="confirmField" hidden>
+                    <label for="confirmPassword">
+                        Confirm password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Enter password again"
+                        autocomplete="new-password">
+                </div>
+
+                <div class="options" id="loginOptions">
+                    <label class="remember">
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+
+                    <a href="#forgot"
+                       class="forgot"
+                       id="forgotLink">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button class="submit-btn"
+                        type="submit"
+                        id="submitBtn">
+                    Log in
+                </button>
+
+                <div class="notice"
+                     id="notice"
+                     role="status"
+                     aria-live="polite"></div>
+
+            </form>
+
+            <p class="demo-note">
+                Umar Prime — Website preview.<br>
+                Demo only: authentication is not connected.
+            </p>
+
+        </section>
+    </main>
+
+    <footer>
+        &copy; <span id="year"></span> Umar Prime. All rights reserved.
+    </footer>
+
+    <script>
+        let mode = "login";
+
+        const form = document.getElementById("authForm");
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const confirmInput = document.getElementById("confirmPassword");
+        const notice = document.getElementById("notice");
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        function setMode(newMode) {
+            mode = newMode;
+
+            const isSignup = mode === "signup";
+
+            document.getElementById("heading").textContent =
+                isSignup ? "Create your account" : "Welcome back";
+
+            document.getElementById("subtitle").textContent =
+                isSignup
+                    ? "Create your Umar Prime account."
+                    : "Sign in to continue to Umar Prime.";
+
+            document.getElementById("loginTab").classList.toggle(
+                "active", !isSignup
+            );
+
+            document.getElementById("signupTab").classList.toggle(
+                "active", isSignup
+            );
+
+            document.getElementById("nameField").hidden = !isSignup;
+            document.getElementById("confirmField").hidden = !isSignup;
+            document.getElementById("loginOptions").hidden = isSignup;
+
+            nameInput.required = isSignup;
+            confirmInput.required = isSignup;
+
+            passwordInput.autocomplete =
+                isSignup ? "new-password" : "current-password";
+
+            document.getElementById("submitBtn").textContent =
+                isSignup ? "Create account" : "Log in";
+
+            notice.style.display = "none";
+        }
+
+        function togglePassword() {
+            const isHidden = passwordInput.type === "password";
+
+            passwordInput.type = isHidden ? "text" : "password";
+
+            document.querySelector(".show-password").textContent =
+                isHidden ? "Hide" : "Show";
+        }
+
+        function showNotice(message) {
+            notice.textContent = message;
+            notice.style.display = "block";
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (!form.reportValidity()) {
+                return;
+            }
+
+            if (mode === "signup" &&
+                passwordInput.value !== confirmInput.value) {
+                showNotice("The passwords do not match. Please try again.");
+                return;
+            }
+
+            /*
+             * DEMO ONLY:
+             * No credentials are sent or saved.
+             * Connect a trusted authentication backend before
+             * enabling real account registration or login.
+             */
+
+            if (mode === "signup") {
+                showNotice(
+                    "The sign-up design is working. Real account creation " +
+                    "will work after secure authentication is connected."
+                );
+            } else {
+                showNotice(
+                    "The login design is working. Real login will work " +
+                    "after secure authentication is connected."
+                );
+            }
+        });
+
+        document.getElementById("forgotLink").addEventListener(
+            "click",
+            function(event) {
+                event.preventDefault();
+
+                showNotice(
+                    "Password recovery will be available after an " +
+                    "authentication service is connected."
+                );
+            }
+        );
+    </script>
+
+</body>
+</html>
